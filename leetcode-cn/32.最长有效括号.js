@@ -9,12 +9,7 @@
  * @param {string} s
  * @return {number}
  */
-var longestValidParentheses = function(s) {
-  let dp = new Array(s).fill(0)
-  let longest = 0
 
-  return longest
-};
 // @lc code=end
 
 // 用栈来解
