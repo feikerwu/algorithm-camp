@@ -13,24 +13,17 @@ var canPartition = function (nums) {
   let sum = nums.reduce((acc, num) => acc + num, 0)
   if (sum % 2) {
     return false
-  } else {
-    sum = sum / 2
   }
+  sum = sum / 2
+  const dp = Array.from({ length: sum + 1 }).fill(false)
+  dp[0] = true
 
-  const dp = Array.from(nums).map(() =>
-    Array.from({ length: sum + 1 }).fill(false)
-  )
   for (let i = 0; i < nums.length; i++) {
-    dp[i][0] = true
-  }
-
-  for (let i = 0; i < dp.length - 1; i++) {
-    for (let j = 0; j < dp[0].length; j++) {
-      dp[i + 1][j] =
-        j - nums[i] >= 0 ? dp[i][j] || dp[i][j - nums[i]] : dp[i][j]
+    for (let j = sum; j > 0; j--) {
+      dp[j] = dp[j] || (j - nums[i] >= 0 && dp[j - nums[i]])
     }
   }
 
-  return dp[nums.length - 1][sum]
+  return dp[sum]
 }
 // @lc code=end
