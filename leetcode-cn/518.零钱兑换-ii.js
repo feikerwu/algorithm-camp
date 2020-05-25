@@ -18,8 +18,6 @@ var change = function (amount, coins) {
       dp[j] = dp[j] + (j - coins[i] >= 0 ? dp[j - coins[i]] : 0)
     }
   }
-  // console.log(dp)
-  // console.log(dp[amount])
   return dp[amount]
 }
 

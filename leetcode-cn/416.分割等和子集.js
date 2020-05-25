@@ -15,15 +15,25 @@ var canPartition = function (nums) {
     return false
   }
   sum = sum / 2
-  const dp = Array.from({ length: sum + 1 }).fill(false)
-  dp[0] = true
+  nums = nums.sort((a, b) => b - a)
+  if (sum < nums[0]) {
+    return false
+  }
+  return dfs(nums, sum, sum, 0)
+}
 
-  for (let i = 0; i < nums.length; i++) {
-    for (let j = sum; j > 0; j--) {
-      dp[j] = dp[j] || (j - nums[i] >= 0 && dp[j - nums[i]])
-    }
+function dfs(nums, pick, discard, cur) {
+  if (pick === 0 || discard === 0) {
+    return true
   }
 
-  return dp[sum]
+  if (pick < 0 || discard < 0 || cur > nums.length) {
+    return false
+  }
+
+  return (
+    dfs(nums, pick - nums[cur], discard, cur + 1) ||
+    dfs(nums, pick, discard - nums[cur], cur + 1)
+  )
 }
 // @lc code=end
