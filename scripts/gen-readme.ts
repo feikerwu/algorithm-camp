@@ -17,7 +17,7 @@ async function dirFileToReadme(path: string) {
   res = res.sort((a, b) => parseInt(a.substring(1)) - parseInt(b.substring(1)));
   res.unshift(`## ${path.substring(2)}\n`);
 
-  return res.join('\b \n');
+  return res.join('');
 }
 
 async function getReadme() {
@@ -35,7 +35,7 @@ async function getReadme() {
 // leetcodeCn('./leetcode-cn').catch((e) => console.error(e));
 
 function getMarkdownLinkEntry(name: string, link: string) {
-  return `- [${name}](${link})`;
+  return `- [${name}](${link})\n`;
 }
 
 getReadme();
