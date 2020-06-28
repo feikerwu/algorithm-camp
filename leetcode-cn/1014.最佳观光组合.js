@@ -12,15 +12,13 @@
  * @param {number[]} A
  * @return {number}
  */
-var maxScoreSightseeingPair = function(A) {
-  let maxPre = A[0]
-  let res = -Infinity
-  for(let i = 1; i < A.length; i++) {
-    res = Math.max(res, A[i] - i + maxPre)
-    maxPre = Math.max(maxPre, A[i] + i)
+var maxScoreSightseeingPair = function (A) {
+  let maxPre = A[0];
+  let res = -Infinity;
+  for (let i = 1; i < A.length; i++) {
+    res = Math.max(res, A[i] - i + maxPre);
+    maxPre = Math.max(maxPre, A[i] + i);
   }
-
   return res;
 };
 // @lc code=end
-
