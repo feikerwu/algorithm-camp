@@ -6,6 +6,8 @@
 
 // @lc code=start
 /**
+ * 动态规划，规划方向从下往上，dp[i][j]的含义为从当前点到目标需要的健康点数目。
+ * dp[i][j] = Math.max(1, Math.min(dp[i][j+1], dp[i+1][j]) - dungeon[i][j])
  * @param {number[][]} dungeon
  * @return {number}
  */
