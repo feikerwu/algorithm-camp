@@ -11,7 +11,7 @@
  */
 var solveNQueens = function (n) {
   let res = [];
-  let queen = Array.from({ length: n }).map((_) =>
+  let queen = Array.from({ length: n }).map(_ =>
     Array.from({ length: n }).fill('.')
   );
 
@@ -20,31 +20,39 @@ var solveNQueens = function (n) {
   return res;
 
   function dfs(cur) {
+    // 找到一个摆放的可能
     if (cur === n) {
       res.push(clone(queen));
     }
+
+    // 在当前行遍历每列摆放的可能性
     for (let i = 0; i < n; i++) {
       if (check(cur, i)) {
+        // 可以放，则在当前点摆放Q, 寻找下一个Q的摆放位置
         queen[cur][i] = 'Q';
         dfs(cur + 1);
+        // 回溯
         queen[cur][i] = '.';
       }
     }
   }
 
   function check(x, y) {
+    // 从上到下
     for (let i = 0; i < n; i++) {
       if (i !== x && queen[i][y] === 'Q') {
         return false;
       }
     }
 
+    // 从左到右
     for (let i = 0; i < n; i++) {
       if (i !== y && queen[x][i] === 'Q') {
         return false;
       }
     }
 
+    // 检查斜着的4个方向
     let dirs = [
       [1, -1],
       [1, 1],
@@ -73,6 +81,6 @@ var solveNQueens = function (n) {
   }
 };
 
-const clone = (arr) => arr.map((item) => item.slice().join(''));
+const clone = arr => arr.map(item => item.slice().join(''));
 
 // @lc code=end
