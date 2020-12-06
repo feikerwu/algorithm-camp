@@ -6,7 +6,7 @@
 
 // @lc code=start
 /**
- * 对每个数对K取模后进行hash
+ * 对每个数对K取模后进行hashtable
  * @param {number[]} arr
  * @param {number} k
  * @return {boolean}
