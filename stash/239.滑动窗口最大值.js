@@ -10,6 +10,7 @@
  * @param {number} k
  * @return {number[]}
  */
+
 var maxSlidingWindow = function (nums, k) {
   const res = [];
   const dequeue = new Dequeue([]);
@@ -53,5 +54,3 @@ class Dequeue {
     return this.list[0];
   }
 }
-
-// @lc code=end
