@@ -7,7 +7,8 @@
 ### tree
 [二叉树的锯齿形层次遍历](solutions/103.binary-tree-zigzag-level-order-traversal.md)
 
-
+### 哈希表
+[字符串中的第一个唯一字符](solutions/387.first-unique-character-in-a-stringmd)
 ## leetcode-cn
 - [236. 二叉树的最近公共祖先](./leetcode-cn/236. 二叉树的最近公共祖先.js)
 - [430.扁平化多级双向链表](./leetcode-cn/430.扁平化多级双向链表.js)
