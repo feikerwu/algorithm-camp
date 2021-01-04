@@ -18,10 +18,8 @@
  * @return {ListNode}
  */
 var partition = function (head, x) {
-  let p1 = new ListNode();
-  let p2 = new ListNode();
-  let ph1 = p1;
-  let ph2 = p2;
+  let [ph1, ph2] = [new ListNode(), new ListNode()];
+  let [p1, p2] = [ph1, ph2];
   while (head) {
     if (head.val < x) {
       p1.next = head;

@@ -6,51 +6,31 @@
 
 // @lc code=start
 /**
+ * 用单调队列简化极值判断，用下标确定越界                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
  * @param {number[]} nums
  * @param {number} k
  * @return {number[]}
  */
 
 var maxSlidingWindow = function (nums, k) {
-  const res = [];
-  const dequeue = new Dequeue([]);
-  // 前 k - 1 个数入队
-  for (let i = 0; i < k - 1; i++) {
-    dequeue.push(nums[i]);
+  const dequeue = [];
+  let res = [];
+  for (var i = 0; i < nums.length; i++) {
+    push(i);
+    if (i >= k - 1) {
+      res.push(nums[dequeue[0]]);
+    }
   }
 
-  // 滑动窗口
-  for (let i = k - 1; i < nums.length; i++) {
-    dequeue.push(nums[i]);
-    res.push(dequeue.max());
-    dequeue.shift(nums[i - k + 1]);
-  }
   return res;
+
+  function push(index) {
+    while (index - dequeue[0] >= k) {
+      dequeue.shift();
+    }
+    while (dequeue.length && nums[dequeue[dequeue.length - 1]] < nums[index]) {
+      dequeue.pop();
+    }
+    dequeue.push(index);
+  }
 };
-
-class Dequeue {
-  constructor(nums) {
-    this.list = nums;
-  }
-
-  push(val) {
-    const nums = this.list;
-    // 保证数据从队头到队尾递减
-    while (nums[nums.length - 1] < val) {
-      nums.pop();
-    }
-    nums.push(val);
-  }
-
-  // 队头出队
-  shift(val) {
-    let nums = this.list;
-    if (nums[0] === val) {
-      nums.shift();
-    }
-  }
-
-  max() {
-    return this.list[0];
-  }
-}
