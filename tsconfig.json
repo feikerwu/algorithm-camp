@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "lib": ["ES2015", "DOM"],
+    "target": "ES5",
+    "downlevelIteration": true // 降级遍历器实现
+  }
+}
