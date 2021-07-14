@@ -1,23 +1,20 @@
-function displayTable(orders: string[][]): string[][] {
-  const foods = [...new Set(orders.map(order => order[2]))].sort();
-  const header = ['Table', ...foods];
-  const m = new Map<string, Map<string, number>>();
-  for (let [name, table, food] of orders) {
-    if (!m.has(table)) {
-      m.set(table, new Map());
+const remainder = 10 ** 9 + 7;
+
+function countPairs(deliciousness: number[]): number {
+  let map = new Map<number, number>();
+  let res = 0;
+  for (let food of deliciousness) {
+    for (let i = 0; i <= 22; i++) {
+      const pair = (1 << i) - food;
+      if (pair > 0 && map.has(pair)) {
+        res = (res + map.get(pair)) % remainder;
+      }
     }
-    let foodMap = m.get(table);
-    foodMap.set(food, (foodMap.get(food) || 0) + 1);
+
+    map.set(food, (map.get(food) || 0) + 1);
   }
 
-  let result = [];
-  for (let [tableName, foodMap] of m) {
-    let curTable: string[] = [tableName];
-    for (let food of foods) {
-      curTable.push(`${foodMap.get(food) || 0}`);
-    }
-    result.push(curTable);
-  }
-
-  return [header, ...result.sort((a, b) => a[0] - b[0])];
+  return res;
 }
+
+countPairs([1, 3, 5, 7, 9]);
