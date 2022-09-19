@@ -17,8 +17,28 @@
  * @param {TreeNode} root
  * @return {string}
  */
-var tree2str = function(root) {
+var tree2str = function (root) {
+  const result = [];
+  function help(cur) {
+    if (!cur) {
+      return;
+    }
+    result.push(cur.val);
+    if (cur.left) {
+      result.push('(');
+      help(cur.left);
+      result.push(')');
+    }
 
+    if (cur.right) {
+      result.push('(');
+      help(cur.right);
+      result.push(')');
+    }
+  }
+
+  help(root);
+
+  return result.join('');
 };
 // @lc code=end
-
